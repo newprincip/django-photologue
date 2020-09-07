@@ -8,7 +8,6 @@ from django.contrib.sites.models import Site
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.utils.translation import ungettext, ugettext_lazy as _
-from django_admin_listfilter_dropdown.filters import RelatedDropdownFilter
 
 from .forms import UploadZipForm
 from .models import Gallery, Photo, PhotoEffect, PhotoSize, \
@@ -140,7 +139,7 @@ class PhotoAdminForm(forms.ModelForm):
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added',
                     'is_public', 'view_count', 'admin_thumbnail')
-    list_filter = ['date_added', 'is_public', ('galleries', RelatedDropdownFilter)]
+    list_filter = ['date_added', 'is_public']
     if MULTISITE:
         list_filter.append('sites')
     search_fields = ['title', 'slug', 'caption']
