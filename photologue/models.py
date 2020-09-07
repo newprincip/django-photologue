@@ -901,5 +901,12 @@ def add_default_site(instance, created, **kwargs):
     instance.sites.add(Site.objects.get_current())
 
 
+def auto_slug(instance, created, **kwargs):
+    if not created:
+        return
+    instance.__class__.objects.filter(pk=instance.pk).update(slug=instance.pk)
+
+
 post_save.connect(add_default_site, sender=Gallery)
 post_save.connect(add_default_site, sender=Photo)
+post_save.connect(auto_slug, sender=Photo)
