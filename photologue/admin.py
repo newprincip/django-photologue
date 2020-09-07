@@ -132,7 +132,7 @@ class PhotoAdminForm(forms.ModelForm):
         if MULTISITE:
             exclude = []
         else:
-            exclude = ['sites']
+            exclude = ['slug', 'sites']
 
 
 class PhotoAdmin(admin.ModelAdmin):
@@ -143,7 +143,7 @@ class PhotoAdmin(admin.ModelAdmin):
         list_filter.append('sites')
     search_fields = ['title', 'slug', 'caption']
     list_per_page = 10
-    prepopulated_fields = {'slug': ('title',)}
+    #prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ('date_taken',)
     form = PhotoAdminForm
     if MULTISITE:
