@@ -135,6 +135,8 @@ class UploadZipForm(forms.Form):
                     continue
                 break
 
+            photo_title = filename
+
             photo = Photo(title=photo_title,
                           slug=slug,
                           caption=self.cleaned_data['caption'],
