@@ -535,7 +535,9 @@ class Photo(ImageModel):
         verbose_name_plural = _("photos")
 
     def __str__(self):
-        return self.title
+        if self.title:
+            return self.title
+        return self.pk
 
     def save(self, *args, **kwargs):
         if self.slug is None:
