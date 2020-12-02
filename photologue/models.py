@@ -537,7 +537,7 @@ class Photo(ImageModel):
     def __str__(self):
         if self.title:
             return self.title
-        return self.pk
+        return str(self.pk)
 
     def save(self, *args, **kwargs):
         if self.slug is None:
